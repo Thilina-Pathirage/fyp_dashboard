@@ -1,0 +1,86 @@
+.Sidebar{
+  display: none;
+  position: relative;
+  width: 320px;
+  height: 100vh;
+  background-color: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.274) 5px 10px 15px;
+}
+.Slide-bar-list{
+height: auto;
+padding: 0;
+width: 100%;
+}
+
+.item-row{
+list-style-type: none;
+width: 90%;
+height: 70px;
+margin: auto;
+border-radius: 3px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+margin-top: 5px;
+}
+
+.item-row:hover{
+background-color: rgb(215, 230, 252);
+cursor: pointer;
+}
+
+.item-row .item-icon {
+flex: 30%;
+display: grid;
+place-items: center;
+}
+
+.item-row .item-title {
+flex: 70%;
+}
+
+.bar-title-main{
+width: 80%;
+margin: auto;
+align-content: center;
+text-align: center;
+padding-top: 50px;
+}
+
+.bar-title-inner{
+color: #0066FF;
+font-size: 40px;
+font-weight: bold;
+margin-bottom: 30px;
+}
+
+.copyright{
+position: absolute;
+width: 100%;
+margin: auto;
+font-size: small;
+bottom: 0;
+text-align: center;
+float: inherit;
+margin-bottom: 50px;
+}
+
+.hr-line{
+margin: auto;
+width: 80%;
+margin-bottom: 30px;
+}
+
+#active{
+background-color: #0066FF;
+color: whitesmoke;
+}
+
+@media (min-width: 768px) {
+
+.Sidebar {
+  display: block;
+}
+
+}
