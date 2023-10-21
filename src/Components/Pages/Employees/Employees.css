@@ -1,5 +1,13 @@
 .card-list-block{
-    margin-right: 60px;
-    margin-left: 60px;
     margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: right;
+}
+
+.create-new-user-btn {
+    margin-bottom: 20px !important;
+    background-color: white !important;
+    color: black !important;
 }

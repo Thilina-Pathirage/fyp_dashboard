@@ -34,3 +34,22 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.right {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+}
+
+.left {
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+}
+
+.input-field {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
