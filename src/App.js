@@ -6,6 +6,8 @@ import Employees from './Components/Pages/Employees/Employees';
 import Leaves from './Components/Pages/Leaves/Leaves';
 import Complaints from './Components/Pages/Complaints/Complaints';
 import Hexagon from './Components/Pages/Hexagon';
+import Login from './Components/Pages/Login/Login';
+
 const App = () => {
   return (
     <div className="App">
@@ -15,7 +17,7 @@ const App = () => {
         <main>
           <Switch>
 
-            <Route path="/" exact>
+            <Route path="/home" exact>
               <Dashboard />
             </Route>
 
@@ -31,8 +33,10 @@ const App = () => {
               <Complaints />
             </Route>
 
-            <Route path="/logout" exact>
-              <Hexagon />
+          
+
+            <Route path="/" exact>
+              <Login />
             </Route>
 
             <Redirect to="/" />

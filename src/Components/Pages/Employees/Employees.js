@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import {  Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Axios from 'axios'; // Import Axios
 import Sidebar from '../../Sidebar';
 import './Employees.css';
 import CustomizedTables from '../../common/Table/Table';
 import AddEmployeeModal from './AddEmployeeModal';
+import { useHistory } from 'react-router-dom';
+
 
 function Employees() {
+    const history = useHistory();
+
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            history.push('/');
+        }
+
+
         // Make an API call to fetch all employees
         Axios.get("https://fyp-eud.azurewebsites.net/api/users/all-users")
             .then((response) => {
@@ -18,7 +29,7 @@ function Employees() {
             .catch((error) => {
                 console.error("Error fetching employees: ", error);
             });
-    }, []); // The empty dependency array ensures this effect runs only once
+    }, [history]); // The empty dependency array ensures this effect runs only once
 
     return (
         <div>

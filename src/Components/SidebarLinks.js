@@ -9,7 +9,7 @@ export const SidebarLinks = [
     {
         title: "Dashboard",
         icon: <DashboardOutlinedIcon/>,
-        link: '/'
+        link: '/home'
     },
     {
         title: "Employees",
@@ -25,10 +25,5 @@ export const SidebarLinks = [
         title: "Complaints",
         icon: <ErrorOutlineOutlinedIcon/>,
         link: '/complaints'
-    },
-    {
-        title: "Logout",
-        icon: <ExitToAppOutlinedIcon/>,
-        link: '/logout'
     },
 ]

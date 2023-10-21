@@ -3,8 +3,16 @@ import ReactDOM from 'react-dom';
 import './SideDrawer.css';
 import { CSSTransition } from 'react-transition-group';
 import { SidebarLinks } from './SidebarLinks';
+import { Button } from '@mui/material';
 
 const SideDrawer = props => {
+    const handleLogout = () => {
+        // Clear all items in localStorage
+        localStorage.clear();
+        // Reload the window
+        window.location.reload();
+    };
+
     const content = <CSSTransition
         in={props.show}
         timeout={200}
@@ -29,6 +37,17 @@ const SideDrawer = props => {
                             </li>
                         );
                     })}
+
+                    <div className="bar-title-main">
+
+                        <hr />
+                        <div className='center'>
+
+                            <Button onClick={handleLogout} variant='outlined' style={{ marginTop: '20px' }}>
+                                Logout
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </aside>

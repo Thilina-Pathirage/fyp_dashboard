@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Grid } from "@material-ui/core";
 import Sidebar from '../../Sidebar';
 import LeavesTable from '../../common/LeavesTable/LeavesTable';
+import { useHistory } from 'react-router-dom';
 
 function Leaves() {
+
+    const history = useHistory();
+
+    useEffect(() => {
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            history.push('/');
+        }
+    }, [history]);
+
     return (
         <div>
             <Grid container>

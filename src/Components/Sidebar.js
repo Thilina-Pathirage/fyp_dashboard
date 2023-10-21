@@ -1,13 +1,22 @@
 import React from 'react'
 import { SidebarLinks } from './SidebarLinks';
+import Logo from '../Images/logo-eu.png'; // Replace with your logo'; 
+import { Button } from '@mui/material';
 
 function Sidebar() {
+
+    const handleLogout = () => {
+        // Clear all items in localStorage
+        localStorage.clear();
+        // Reload the window
+        window.location.reload();
+    };
     return (
         <div>
             <div className="Sidebar">
                 <div className="bar-title-main">
-                    <div className="bar-title-inner">
-                        Eudaimonia
+                    <div className='center'>
+                        <img src={Logo} alt="logo" style={{ width: 300, marginBottom: "10px" }} />
                     </div>
                     <hr />
                 </div>
@@ -26,6 +35,17 @@ function Sidebar() {
                             </li>
                         );
                     })}
+                    <div className="bar-title-main">
+
+                        <hr />
+                        <div className='center'>
+
+                            <Button onClick={handleLogout} variant='outlined' style={{marginTop: '20px'}}>
+                                Logout
+                            </Button>
+                        </div>
+                    </div>
+
                 </div>
 
 
