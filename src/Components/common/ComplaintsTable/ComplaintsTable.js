@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,8 +9,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
+import Axios from 'axios'; // Import Axios
 
 import './ComplaintsTable.css';
+import { Typography } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -31,53 +33,53 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
+export default function ComplaintsTable({ filteredUser}) {
+    const [rows, setRows] = useState([]);
+    const [filteredRows, setFilteredRows] = useState([]);
 
-const rows = [
-    createData('Thilina Pathirage', 'thilina@gmail.com', 'Junior Developer', 24, 4.0),
-    createData('Ishan Chanuka', 'ishan@gmail.com', 'Junior Developer', 37, 4.3),
-    createData('Thulaksha Marasinghe', 'thulaksha@gmail.com', 'Event Manager', 24, 6.0),
-    createData('Hancie Gayathma', 'hancie@gmail.com', 'Full Stack Developer', 67, 4.3),
-    createData('Hiruna Gayashan', 'hiruna@gmail.com', 'Mobile Developer', 49, 3.9),
-];
+    useEffect(() => {
+        // Make an API call to fetch complaints
+        Axios.get('https://fyp-eud.azurewebsites.net/api/complaints/all')
+            .then((response) => {
+                // Update the rows with the response data
+                setRows(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching complaints:', error);
+            });
+    }, []); // Empty dependency array, runs once on component mount
 
-export default function ComplaintsTable() {
+     // Filter rows based on the selected user
+     useEffect(() => {
+        const filteredRows = filteredUser !== 'All Users'
+            ? rows.filter((row) => row.createdUserEmail === filteredUser)
+            : rows;
+        setFilteredRows(filteredRows);
+    }, [filteredUser, rows]);
+
     return (
-        <TableContainer component={Paper}>
+        filteredRows.length ?  <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead >
-                    <TableRow >
-                        <StyledTableCell>Employee</StyledTableCell>
-                        <StyledTableCell>Email</StyledTableCell>
-                        <StyledTableCell>Position</StyledTableCell>
-                        <StyledTableCell>Health Status</StyledTableCell>
-                        <StyledTableCell>Work Status</StyledTableCell>
-                        <StyledTableCell>Work Load</StyledTableCell>
+                <TableHead>
+                    <TableRow>
+                        <StyledTableCell>Title</StyledTableCell>
+                        <StyledTableCell>Description</StyledTableCell>
+                        <StyledTableCell>Created User</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.name}>
+                    {
+                    filteredRows.map((row) => (
+                        <StyledTableRow key={row._id}>
                             <StyledTableCell component="th" scope="row">
-                                {row.name}
+                                {row.title}
                             </StyledTableCell>
-                            <StyledTableCell >{row.calories}</StyledTableCell>
-                            <StyledTableCell >{row.fat}</StyledTableCell>
-                            <StyledTableCell >
-                                <Chip label="Mild" color="success" size='small' /></StyledTableCell>
-                            <StyledTableCell >
-                                <Chip label="Active" color="success" variant="outlined" size='small' />
-                            </StyledTableCell>
-                            <StyledTableCell >
-                                <Chip label="Heavy" color="error" variant="outlined" size='small' />
-                            </StyledTableCell>
-                         
+                            <StyledTableCell>{row.description}</StyledTableCell>
+                            <StyledTableCell>{row.createdUserEmail}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>
-        </TableContainer>
+        </TableContainer> : <Typography variant="h6" style={{marginTop: '20px', color: 'white'}}>No complaints found</Typography>
     );
 }
