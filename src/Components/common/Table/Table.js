@@ -116,7 +116,7 @@ export default function CustomizedTables({ employees, filteredStatus, filteredWo
                                 />
                             </StyledTableCell>
                             <StyledTableCell>
-                                <Chip label={employee?.workStatus || 'Online'} color="success" variant="outlined" size='small' />
+                                <Chip label={employee?.workStatus || 'Online'} color={employee.workStatus === 'Online' ? 'success' : 'default'} variant="contained" size='small' />
                             </StyledTableCell>
 
 
