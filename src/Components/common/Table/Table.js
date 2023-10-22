@@ -72,7 +72,12 @@ const getColorForWorkLoad = (workLoad) => {
 
 
 
-export default function CustomizedTables({ employees }) {
+
+export default function CustomizedTables({ employees, filteredStatus, filteredWorkloadStatus }) {
+
+    const filteredRows = employees
+        .filter((emp) => filteredStatus === 'Health Status (All)' || emp.mentalHealthStatus.prediction === filteredStatus)
+        .filter((emp) => filteredWorkloadStatus === 'Workload Status (All)' || emp.workLoad === filteredWorkloadStatus);
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -88,7 +93,7 @@ export default function CustomizedTables({ employees }) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {employees.map((employee) => (
+                    {filteredRows.map((employee) => (
                         <StyledTableRow key={employee._id}>
                             <StyledTableCell component="th" scope="row">
                                 {employee.firstName} {employee.lastName}

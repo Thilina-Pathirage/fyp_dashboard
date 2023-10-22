@@ -28,7 +28,7 @@ export default function ComplaintsFilter({ onFilterChange }) {
             <Select
                 value={selectedUser}
                 onChange={handleUserChange}
-                style={{height: '30px', backgroundColor: 'white', color: 'black', borderRadius: '5px', padding: '5px', marginBottom: '10px'}}
+                style={{ height: '37px', backgroundColor: 'white', color: 'black', borderRadius: '5px', padding: '5px', marginBottom: '10px'}}
             >
                 <MenuItem value="All Users">All Users</MenuItem>
                 {userEmails.map((email) => (

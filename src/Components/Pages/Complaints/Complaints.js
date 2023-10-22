@@ -32,7 +32,7 @@ function Complaints() {
                 <Grid item xs={8}>
                     <div className='card-list-block'>
                         <div className='button-bar'>
-                            <div className='right'>
+                            <div className='left'>
                                 <ComplaintsFilter onFilterChange={handleFilterChange} />
                             </div>
                         </div>

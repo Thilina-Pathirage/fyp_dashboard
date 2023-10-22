@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button, TextField, Select, MenuItem, FormControl } from "@mui/material";
+import { Button, TextField, Select, MenuItem, FormControl, Stack } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import Axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
@@ -16,7 +16,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    borderRadius: '10px',
     boxShadow: 24,
     p: 4,
 };
@@ -198,6 +198,16 @@ export default function AddEmployeeModal() {
                                 fullWidth
                             />
                         </div>
+                        <Stack direction="row" spacing={2}>
+                        <Button
+                        color='error'
+                            variant="contained"
+                            onClick={handleClose}
+                            fullWidth
+                        >
+                            Close
+                        </Button>
+
                         <Button
                             sx={{ backgroundColor: '#0066FF', color: '#ffffff' }}
                             variant="contained"
@@ -206,6 +216,7 @@ export default function AddEmployeeModal() {
                         >
                             Submit
                         </Button>
+                        </Stack>
                     </form>
                 </Box>
             </Modal>

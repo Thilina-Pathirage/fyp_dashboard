@@ -42,7 +42,7 @@ function Leaves() {
                 <Grid item xs={8}>
                     <div className='card-list-block'>
                         <div className='button-bar'>
-                            <div className='right'>
+                            <div className='left'>
                                <Stack direction="row" spacing={2}>
                                <ComplaintsFilter onFilterChange={handleFilterChange} />
                                 <StatusFilter onStatusFilterChange={handleStatusFilterChange} />
