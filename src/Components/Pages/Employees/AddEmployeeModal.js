@@ -45,7 +45,7 @@ export default function AddEmployeeModal() {
         lastName: '',
         email: '',
         password: '',
-        userRole: 'admin',
+        userRole: 'employee',
         position: 'Junior Developer',
         workStatus: 'Offline',
     });
