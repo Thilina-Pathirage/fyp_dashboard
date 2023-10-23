@@ -47,7 +47,7 @@ export default function AddEmployeeModal() {
         password: '',
         userRole: 'admin',
         position: 'Junior Developer',
-        workStatus: 'online',
+        workStatus: 'Offline',
     });
 
     const handleChange = (e) => {
