@@ -40,7 +40,7 @@ function Sidebar() {
                         <hr />
                         <div className='center'>
 
-                            <Button onClick={handleLogout} variant='outlined' style={{marginTop: '20px'}}>
+                            <Button onClick={handleLogout} color='error' variant='outlined' style={{marginTop: '20px'}}>
                                 Logout
                             </Button>
                         </div>

@@ -3,8 +3,8 @@
   position: relative;
   width: 320px;
   height: 100vh;
-  background-color: whitesmoke;
-  box-shadow: rgba(0, 0, 0, 0.274) 5px 10px 15px;
+
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 }
 .Slide-bar-list{
 height: auto;

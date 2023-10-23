@@ -1,8 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  background: rgb(0, 102, 255);
-  background: linear-gradient(90deg, rgba(0, 102, 255, 0.774) 0%, rgb(0, 102, 255) 100%);
   font-family: Poppins;
 }
 
@@ -39,14 +37,12 @@ body {
   text-align: right;
   display: flex;
   justify-content: flex-end;
-  align-items: end;
 }
 
 .left {
   text-align: left;
   display: flex;
   justify-content: flex-start;
-  align-items: start;
 }
 
 .input-field {

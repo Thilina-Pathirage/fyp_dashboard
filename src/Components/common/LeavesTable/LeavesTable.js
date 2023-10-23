@@ -15,11 +15,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { Typography } from '@mui/material';
 
 export default function LeaveTable({ filteredUser, filteredStatus }) {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
+            backgroundColor: '#0066FF',
             color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
@@ -31,6 +32,12 @@ export default function LeaveTable({ filteredUser, filteredStatus }) {
         const date = new Date(dateStr);
         return date.toISOString().split('T')[0];
     };
+
+    const handleDate = (startDateStr) => {
+        const currentDate = new Date();
+        const startDate = new Date(startDateStr);
+        return currentDate > startDate;
+    }
 
     const [leaveData, setLeaveData] = useState([]);
     const [selectedLeave, setSelectedLeave] = useState(null);
@@ -96,12 +103,12 @@ export default function LeaveTable({ filteredUser, filteredStatus }) {
     }, []);
 
     const filteredRows = leaveData
-    .filter((leave) => filteredUser === 'All Users' || leave.requestedUserEmail === filteredUser)
-    .filter((leave) => filteredStatus === 'All' || leave.status === filteredStatus);
+        .filter((leave) => filteredUser === 'All Users' || leave.requestedUserEmail === filteredUser)
+        .filter((leave) => filteredStatus === 'All' || leave.status === filteredStatus);
 
 
     return (
-        <div>
+        filteredRows.length ? <div>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
@@ -128,8 +135,9 @@ export default function LeaveTable({ filteredUser, filteredStatus }) {
                                 </StyledTableCell>
                                 <StyledTableCell>
                                     <Button
+                                        disabled={handleDate(leave.startDate)}
                                         variant='contained'
-                                        style={{ backgroundColor: '#0066FF' }}
+                                        style={{ backgroundColor: handleDate(leave.startDate) ? '#ebebeb' : '#0066FF' }}
                                         onClick={(e) => handleMenuOpen(e, leave)}
                                     >
                                         Action
@@ -161,6 +169,6 @@ export default function LeaveTable({ filteredUser, filteredStatus }) {
                     {snackbarMessage}
                 </MuiAlert>
             </Snackbar>
-        </div>
+        </div> : <Typography variant="h6" style={{marginTop: '20px', color: 'black'}}>No leaves found</Typography>
     );
 }

@@ -7,8 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
 import Axios from 'axios'; // Import Axios
 
 import './ComplaintsTable.css';
@@ -16,7 +14,9 @@ import { Typography } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+
+        backgroundColor: '#0066FF',
+
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-export default function ComplaintsTable({ filteredUser}) {
+export default function ComplaintsTable({ filteredUser }) {
     const [rows, setRows] = useState([]);
     const [filteredRows, setFilteredRows] = useState([]);
 
@@ -49,8 +49,8 @@ export default function ComplaintsTable({ filteredUser}) {
             });
     }, []); // Empty dependency array, runs once on component mount
 
-     // Filter rows based on the selected user
-     useEffect(() => {
+    // Filter rows based on the selected user
+    useEffect(() => {
         const filteredRows = filteredUser !== 'All Users'
             ? rows.filter((row) => row.createdUserEmail === filteredUser)
             : rows;
@@ -58,7 +58,7 @@ export default function ComplaintsTable({ filteredUser}) {
     }, [filteredUser, rows]);
 
     return (
-        filteredRows.length ?  <TableContainer component={Paper}>
+        filteredRows.length ? <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
@@ -69,17 +69,17 @@ export default function ComplaintsTable({ filteredUser}) {
                 </TableHead>
                 <TableBody>
                     {
-                    filteredRows.map((row) => (
-                        <StyledTableRow key={row._id}>
-                            <StyledTableCell component="th" scope="row">
-                                {row.title}
-                            </StyledTableCell>
-                            <StyledTableCell>{row.description}</StyledTableCell>
-                            <StyledTableCell>{row.createdUserEmail}</StyledTableCell>
-                        </StyledTableRow>
-                    ))}
+                        filteredRows.map((row) => (
+                            <StyledTableRow key={row._id}>
+                                <StyledTableCell component="th" scope="row">
+                                    {row.title}
+                                </StyledTableCell>
+                                <StyledTableCell>{row.description}</StyledTableCell>
+                                <StyledTableCell>{row.createdUserEmail}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
                 </TableBody>
             </Table>
-        </TableContainer> : <Typography variant="h6" style={{marginTop: '20px', color: 'white'}}>No complaints found</Typography>
+        </TableContainer> : <Typography variant="h6" style={{ marginTop: '20px', color: 'black' }}>No complaints found</Typography>
     );
 }
