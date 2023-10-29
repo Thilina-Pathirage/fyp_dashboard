@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { useHistory } from 'react-router-dom';
+
 
 export default function HealthStatusFilter({ onStatusFilterChange }) {
-    const [selectedStatus, setSelectedStatus] = useState('Health Status (All)');
+
+    const history = useHistory();
+
+    const queryString = history.location.search;
+
+    const params = new URLSearchParams(queryString);
+    const status = params.get('status');
+
+    const [selectedStatus, setSelectedStatus] = useState(status ? status : 'Health Status (All)');
+
+    console.log(selectedStatus);
 
     const handleStatusChange = (e) => {
         setSelectedStatus(e.target.value);
         onStatusFilterChange(e.target.value);
+        history.replace(`/employees?status=${e.target.value}`);
+
     };
 
     return (

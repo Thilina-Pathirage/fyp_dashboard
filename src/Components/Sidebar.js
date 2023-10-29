@@ -2,6 +2,8 @@ import React from 'react'
 import { SidebarLinks } from './SidebarLinks';
 import Logo from '../Images/logo-eu.png'; // Replace with your logo'; 
 import { Button } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+
 
 function Sidebar() {
 
@@ -11,6 +13,16 @@ function Sidebar() {
         // Reload the window
         window.location.reload();
     };
+
+    const history = useHistory();
+
+    const hedelNavigate = (link) => {
+        history.replace(link);
+
+    };
+
+
+
     return (
         <div>
             <div className="Sidebar">
@@ -26,7 +38,7 @@ function Sidebar() {
                             <li
                                 className="item-row" key={key}
                                 id={window.location.pathname === val.link ? "active" : ""}
-                                onClick={() => { window.location.pathname = val.link }}
+                                onClick={() => { hedelNavigate(val.link) }}
                             >
                                 <div className="item-icon">{val.icon}</div>
                                 <div className="item-title">
@@ -40,7 +52,7 @@ function Sidebar() {
                         <hr />
                         <div className='center'>
 
-                            <Button onClick={handleLogout} color='error' variant='outlined' style={{marginTop: '20px'}}>
+                            <Button onClick={handleLogout} color='error' variant='outlined' style={{ marginTop: '20px' }}>
                                 Logout
                             </Button>
                         </div>

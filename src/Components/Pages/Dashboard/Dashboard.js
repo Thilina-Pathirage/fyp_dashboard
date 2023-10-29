@@ -67,7 +67,7 @@ function Dashboard() {
                     <div className='card-list-block'>
                         <Grid container spacing={5}>
                             {[
-                                'All Users',
+                                'Health Status (All)',
                                 'Normal',
                                 'Mild',
                                 'Moderate',

@@ -16,6 +16,9 @@ import DeleteConfirmationDialog from './DeleteConfirm'; // Import the dialog com
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+import Typography from '@mui/material/Typography';
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: '#0066FF',
@@ -71,7 +74,7 @@ const getColorForWorkLoad = (workLoad) => {
     }
 };
 
-export default function CustomizedTables({ employees, filteredStatus, filteredWorkloadStatus }) {
+export default function CustomizedTables({ employees, selectedStatus, filteredStatus, filteredWorkloadStatus }) {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [employeeToDelete, setEmployeeToDelete] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -122,12 +125,14 @@ export default function CustomizedTables({ employees, filteredStatus, filteredWo
         setSnackbarOpen(false);
     };
 
+    console.log(selectedStatus);
+
     const filteredRows = employees
         .filter((emp) => filteredStatus === 'Health Status (All)' || emp.mentalHealthStatus.prediction === filteredStatus)
         .filter((emp) => filteredWorkloadStatus === 'Workload Status (All)' || emp.workLoad === filteredWorkloadStatus);
 
     return (
-        <div>
+        filteredRows.length ? <div>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
@@ -201,6 +206,6 @@ export default function CustomizedTables({ employees, filteredStatus, filteredWo
                     {snackbarMessage}
                 </MuiAlert>
             </Snackbar>
-        </div>
+        </div> : <Typography variant="h6" style={{marginTop: '20px', color: 'black'}}>No employees found</Typography>
     );
 }
