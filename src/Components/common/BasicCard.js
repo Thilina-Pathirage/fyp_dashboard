@@ -41,7 +41,7 @@ export default function BasicCard({ title, count }) {
 
   return (
     <Card
-      sx={{ minWidth: 50, backgroundColor: cardColor, color: textColor }}
+      sx={{ minWidth: 50, minHeight: 164, backgroundColor: cardColor, color: textColor }}
       onClick={handleClick}
       style={linkStyle}
     >
